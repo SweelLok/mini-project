@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Увійти — Мій міні-блог{% endblock %}
+
+{% block content %}
+<h1>Увійти</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p>
+        {{ form.username.label_tag }}<br>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </p>
+
+    <p>
+        {{ form.password.label_tag }}<br>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </p>
+
+    <button type="submit">Увійти</button>
+</form>
+
+<p>Ще не зареєстровані? <a href="{% url 'accounts:register' %}">Реєстрація</a></p>
+{% endblock %}

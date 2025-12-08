@@ -1,0 +1,25 @@
+{% if page_obj.has_other_pages %}
+
+<nav class="paginator">
+		<ul>
+				{% if page_obj.has_previous %}
+						<li><a href="?page=1">&laquo; Перша</a></li>
+						<li><a href="?page={{ page_obj.previous_page_number }}">&lsaquo; Попередня</a></li>
+				{% else %}
+						<li class="disabled">&laquo; Перша</li>
+						<li class="disabled">&lsaquo; Попередня</li>
+				{% endif %}
+
+				<li>Сторінка {{ page_obj.number }} з {{ page_obj.paginator.num_pages }}</li>
+
+				{% if page_obj.has_next %}
+						<li><a href="?page={{ page_obj.next_page_number }}">Наступна &rsaquo;</a></li>
+						<li><a href="?page={{ page_obj.paginator.num_pages }}">Остання &raquo;</a></li>
+				{% else %}
+						<li class="disabled">Наступна &rsaquo;</li>
+						<li class="disabled">Остання &raquo;</li>
+				{% endif %}
+		</ul>
+</nav>
+
+{% endif %}

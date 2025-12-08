@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Усі статті{% endblock %}
+
+{% block content %}
+<h1>Усі статті</h1>
+
+<div class="articles-list">
+    {% for article in page_obj %}
+        <div class="article-card">
+            <h2>
+                <a href="{% url 'articles:detail' article.pk %}">
+                    {{ article.title }}
+                </a>
+            </h2>
+
+            <p>{{ article.content|truncatewords:25 }}</p>
+
+            <small>
+                Автор: {{ article.author.username|default:"Невідомо" }} |
+                {{ article.created_at|date:"d.m.Y H:i" }}
+            </small>
+        </div>
+        <hr>
+    {% empty %}
+        <p>Поки що немає статей.</p>
+    {% endfor %}
+</div>
+
+{% include 'paginator.html' with page_obj=page_obj %}
+
+{% endblock %}

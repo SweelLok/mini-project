@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ article.title }} — Мій міні-блог{% endblock %}
+
+{% block content %}
+<article class="article-detail">
+    <h1>{{ article.title }}</h1>
+    <p class="meta">
+        Автор: {{ article.author.username|default:"Невідомо" }} • 
+        {{ article.created_at|date:"d.m.Y H:i" }}
+    </p>
+    <div class="content">{{ article.content|linebreaks }}</div>
+</article>
+
+<p><a href="{% url 'articles:list' %}">← До списку статей</a></p>
+{% endblock %}

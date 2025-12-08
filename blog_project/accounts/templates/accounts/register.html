@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Реєстрація — Мій міні-блог{% endblock %}
+
+{% block content %}
+<h1>Реєстрація</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+
+    <p>
+        {{ form.username.label_tag }}<br>
+        {{ form.username }}
+        {{ form.username.errors }}
+    </p>
+
+    <p>
+        {{ form.email.label_tag }}<br>
+        {{ form.email }}
+        {{ form.email.errors }}
+    </p>
+
+    <p>
+        {{ form.password.label_tag }}<br>
+        {{ form.password }}
+        {{ form.password.errors }}
+    </p>
+
+    <button type="submit">Зареєструватися</button>
+</form>
+
+<p>Вже маєте акаунт? <a href="{% url 'accounts:login' %}">Увійти</a></p>
+{% endblock %}

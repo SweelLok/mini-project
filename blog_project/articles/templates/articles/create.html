@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Створити статтю — Мій міні-блог{% endblock %}
+
+{% block content %}
+<h1>Створити статтю</h1>
+
+{% if not user.is_authenticated %}
+    <p>Ви повинні <a href="{% url 'accounts:login' %}">увійти</a>, щоб створювати статті.</p>
+{% else %}
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Створити</button>
+    </form>
+{% endif %}
+
+<p><a href="{% url 'articles:list' %}">← До списку статей</a></p>
+{% endblock %}
