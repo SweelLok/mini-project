@@ -26,14 +26,6 @@ def register(request):
 class UserLoginView(LoginView):
     template_name = 'accounts/login.html'
     redirect_authenticated_user = True
-
-
-class RegisterForm(forms.ModelForm):
-    password = forms.CharField(widget=forms.PasswordInput)
-    
-    class Meta:
-        model = User
-        fields = ['username', 'email', 'password']
         
 
 class UserLogoutView(LogoutView):
